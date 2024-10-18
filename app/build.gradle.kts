@@ -1,4 +1,5 @@
 plugins {
+
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -46,6 +47,10 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -57,6 +62,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
 
     // Testing Libraries
     testImplementation(libs.junit)
@@ -75,7 +82,7 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     // Optional, depending on your usage
-    implementation(libs.androidx.hilt.lifecycle.viewmodel)
+//    implementation(libs.androidx.hilt.lifecycle.viewmodel)
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
@@ -87,4 +94,8 @@ dependencies {
     // Coroutine
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
+    //glide
+    implementation (libs.glide)
+    kapt(libs.compiler)
 }
