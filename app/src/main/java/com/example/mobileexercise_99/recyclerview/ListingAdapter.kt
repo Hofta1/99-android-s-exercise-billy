@@ -11,7 +11,9 @@ import com.example.mobileexercise_99.R
 import com.example.mobileexercise_99.data.model.listing.Listing
 import java.util.Locale
 
-class ListingAdapter (private val listingDetail: List<Listing>) : RecyclerView.Adapter<ListingAdapter.DetailViewHolder>() {
+class ListingAdapter (
+    private val listingDetail: List<Listing>,
+    private val onItemClick: (Listing) -> Unit) : RecyclerView.Adapter<ListingAdapter.DetailViewHolder>() {
 
     class DetailViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val photo: ImageView = view.findViewById(R.id.photoIV)
@@ -37,6 +39,10 @@ class ListingAdapter (private val listingDetail: List<Listing>) : RecyclerView.A
         holder.descriptionTV.text = String.format(Locale.US,"Exec %s · %d · %d yrs", listing.category, listing.completedAt, listing.tenure)
         holder.roomSizeTV.text = String.format(Locale.US,"%d Beds · %d Baths · %d sqft", listing.attributes.bedrooms, listing.attributes.bathrooms, listing.attributes.areaSize)
         holder.priceTV.text = String.format(Locale.US,"$%d/mo", listing.attributes.price)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(listing)
+        }
     }
 
     override fun getItemCount(): Int {
