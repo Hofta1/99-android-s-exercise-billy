@@ -5,21 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="10sp"
     android:elevation="15dp"
     app:cardUseCompatPadding="true">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10sp">
 
     <ImageView
         android:id="@+id/photoIV"
         android:layout_width="match_parent"
-        android:layout_height="163dp"
+        android:layout_height="163sp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/project_image_string"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="Parkview Apartment"
+        android:text="@string/project_name_placeholder"
         android:textColor="@color/title_text"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="1dp"
-        android:text="12 Meyappa Chettiar Rd · D13"
+        android:text="@string/description_listing_placeholder"
         android:textColor="@color/desc_text"
         android:textSize="12sp"
         android:fontFamily="@font/avenir_next_pro"/>
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="1dp"
-        android:text="Exec Condo · 2020 · 99 yrs"
+        android:text="@string/description2_listing_placeholder"
         android:textColor="@color/desc_text"
         android:textSize="12sp"
         android:fontFamily="@font/avenir_next_pro"/>
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
-        android:text="3 Beds · 2 Baths · 2,561 sqft"
+        android:text="@string/attribute_listing_placeholder"
         android:textColor="@color/title_text"
         android:textSize="14sp"
         android:fontFamily="@font/avenir_next_pro"/>
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
-        android:text="$5,000/mo"
+        android:text="@string/price_listing_placeholder"
         android:textColor="@color/title_text"
         android:textSize="16sp"
         android:textStyle="bold"

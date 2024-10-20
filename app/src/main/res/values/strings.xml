@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MobileExercise_99</string>
+    <string name="project_name_placeholder">Parkview Apartment</string>
+    <string name="description_listing_placeholder">12 Meyappa Chettiar Rd · D13</string>
+    <string name="description2_listing_placeholder">Exec Condo · 2020 · 99 yrs</string>
+    <string name="attribute_listing_placeholder">3 Beds · 2 Baths · 2,561 sqft</string>
+    <string name="price_listing_placeholder">$5,000/mo</string>
+    <string name="project_image_string">Project Image</string>
+    <string name="project_image_placeholder">Project Image</string>
+    <string name="title_placeholder">1 Keppel Bay View · Condo for Rent</string>
+    <string name="subtitle_placeholder">Telok Blangah / Harbourfront (D4)</string>
+    <string name="map_title">View on map</string>
+    <string name="map_icon">map icon</string>
+    <string name="bed_icon">bed icon</string>
+    <string name="bed_placeholder">3 Beds</string>
+    <string name="bath_placeholder">2 Baths</string>
+    <string name="area_placeholder">1,420 sqft</string>
+    <string name="back_button_description">back button</string>
+    <string name="search_page_title">Search Results</string>
 </resources>
