@@ -16,7 +16,9 @@
         android:background="@drawable/baseline_arrow_back_ios_24"
         android:contentDescription="@string/back_button_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintOverlap"
+        />
 
         <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -25,7 +27,8 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        tools:layout_editor_absoluteY="0dp"
+            />
 
     <Button
         android:id="@+id/gMapButton"
