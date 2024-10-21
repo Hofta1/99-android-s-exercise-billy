@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
-    alias(libs.plugins.dagger.hilt) // Ensure this matches your plugin declaration in `lib.versions.toml`
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.maps.platform)
 }
 
 android {
@@ -101,4 +102,9 @@ dependencies {
     //glide
     implementation (libs.glide)
     kapt(libs.compiler)
+
+    //google maps
+    implementation (libs.play.services.maps)
+    implementation(libs.play.services.location)
+
 }

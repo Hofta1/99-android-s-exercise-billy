@@ -1,11 +1,14 @@
 package com.example.mobileexercise_99
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -31,29 +34,12 @@ class DetailsActivity : AppCompatActivity() {
         val titleTV: TextView = findViewById(R.id.titleTV)
          val subtitleTV: TextView = findViewById(R.id.subtitleTV)
          val mapButton: Button = findViewById(R.id.mapButton)
+        val buttonLayout: LinearLayout = findViewById(R.id.map_button_layout)
          val bedTV: TextView = findViewById(R.id.bedTextView)
          val bathTV: TextView = findViewById(R.id.bathTextView)
-//         val priceSqftLabel: TextView = findViewById(R.id.pricesqftTitleTextView)
-//         val priceSqftTV: TextView = findViewById(R.id.pricesqftTextView)
-//         val floorLevelLabel: TextView = findViewById(R.id.floorLevelTitleTextView)
-//         val floorLevelTV: TextView = findViewById(R.id.floorLevelTextView)
-//         val furnishingLabel: TextView = findViewById(R.id.furnishingTitleTextView)
-//         val furnishingTV: TextView = findViewById(R.id.furnishingTextView)
-//         val facingLabel: TextView = findViewById(R.id.facingTitleTextView)
-//         val facingTV: TextView = findViewById(R.id.facingTextView)
-//         val overlookingViewLabel: TextView = findViewById(R.id.overlookingViewTitleTextView)
-//         val overlookingViewTV: TextView = findViewById(R.id.overlookingViewTextView)
-//         val builtYearLabel: TextView = findViewById(R.id.builtYearTitleTextView)
-//         val builtYearTV: TextView = findViewById(R.id.builtYearTextView)
-//         val tenureLabel: TextView = findViewById(R.id.tenureTitleTextView)
-//         val tenureTV: TextView = findViewById(R.id.tenureTextView)
-//         val propertyTypeLabel: TextView = findViewById(R.id.propertyTypeTitleTextView)
-//         val propertyTypeTV: TextView = findViewById(R.id.propertyTypeTextView)
-//         val lastUpdatedLabel: TextView = findViewById(R.id.lastUpdatedTitleTextView)
-//         val lastUpdatedTV: TextView = findViewById(R.id.lastUpdatedTextView)
          val descriptionTV: TextView = findViewById(R.id.descriptionTextView)
 
-        val id = intent.getIntExtra("id", 0)
+        val id = intent.getIntExtra("id", 1)
         viewModel.getData()
         viewModel.details.observe(this) { details ->
             if (!details.isNullOrEmpty()) {
@@ -65,7 +51,6 @@ class DetailsActivity : AppCompatActivity() {
                 projectNameTV.text = details[id].projectName
                 titleTV.text = details[id].address.title
                 subtitleTV.text = details[id].address.subtitle
-//                mapButton = details[id].
                 bedTV.text = details[id].attributes.bedrooms.toString()
                 bathTV.text = details[id].attributes.bathrooms.toString()
                 for (item in details[id].propertyDetails){
@@ -81,9 +66,18 @@ class DetailsActivity : AppCompatActivity() {
                 descriptionTV.text = details[id].description
                 backButton.setOnClickListener{
                     finish()
-//                    val intent = Intent(this,MainActivity::class.java)
-//                    startActivity(intent)
                 }
+                mapButton.setOnClickListener{
+                    val latitude = details[id].address.mapCoordinates.lat
+                    val longitude = details[id].address.mapCoordinates.lng
+                    val intent = Intent(this,MapActivity::class.java).apply {
+                        putExtra("latitude", latitude)
+                        putExtra("longitude", longitude)
+                    }
+                    startActivity(intent)
+
+                }
+
             }
 
         }

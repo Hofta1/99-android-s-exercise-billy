@@ -11,4 +11,5 @@
     <color name="desc_text">#787D9C</color>
     <color name="link_color">#216BFF</color>
     <color name="line_color">#DDDEE6</color>
+    <color name="detail_background">#F8F8FA</color>
 </resources>
