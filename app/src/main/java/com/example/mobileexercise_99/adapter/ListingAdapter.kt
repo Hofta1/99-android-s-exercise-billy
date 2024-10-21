@@ -1,4 +1,4 @@
-package com.example.mobileexercise_99.recyclerview
+package com.example.mobileexercise_99.adapter
 
 import android.view.LayoutInflater
 import android.view.View

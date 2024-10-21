@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileexercise_99.data.model.listing.Listing
 import com.example.mobileexercise_99.presentation.MyViewModel
-import com.example.mobileexercise_99.recyclerview.ListingAdapter
+import com.example.mobileexercise_99.adapter.ListingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

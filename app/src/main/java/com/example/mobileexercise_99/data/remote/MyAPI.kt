@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface MyAPI {
     @GET("listings.json")
     suspend fun getListing(): List<Listing>
+
     @GET("details.json")
     suspend fun getDetails(): List<Details>
-    suspend fun doNetworkCall()
 }
