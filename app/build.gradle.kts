@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mobileexercise_99"
+    namespace = "com.assignment.mobileexercise_99"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mobileexercise_99"
+        applicationId = "com.assignment.mobileexercise_99"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
