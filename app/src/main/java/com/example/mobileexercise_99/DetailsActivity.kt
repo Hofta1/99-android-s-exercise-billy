@@ -1,14 +1,12 @@
 package com.example.mobileexercise_99
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +32,6 @@ class DetailsActivity : AppCompatActivity() {
         val titleTV: TextView = findViewById(R.id.titleTV)
          val subtitleTV: TextView = findViewById(R.id.subtitleTV)
          val mapButton: Button = findViewById(R.id.mapButton)
-        val buttonLayout: LinearLayout = findViewById(R.id.map_button_layout)
          val bedTV: TextView = findViewById(R.id.bedTextView)
          val bathTV: TextView = findViewById(R.id.bathTextView)
          val descriptionTV: TextView = findViewById(R.id.descriptionTextView)
@@ -47,12 +44,12 @@ class DetailsActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(details[id].photo)
                     .into(photoIV)
-                priceTV.text = String.format(Locale.US,"$%d",details[id].attributes.price)
+                priceTV.text = String.format(Locale.US,"$%d",details[id].attributesDt.price)
                 projectNameTV.text = details[id].projectName
                 titleTV.text = details[id].address.title
                 subtitleTV.text = details[id].address.subtitle
-                bedTV.text = details[id].attributes.bedrooms.toString()
-                bathTV.text = details[id].attributes.bathrooms.toString()
+                bedTV.text = details[id].attributesDt.bedrooms.toString()
+                bathTV.text = details[id].attributesDt.bathrooms.toString()
                 for (item in details[id].propertyDetails){
                     val listItem = LayoutInflater.from(this).inflate(
                         R.layout.detail_listing,container,false
@@ -64,9 +61,13 @@ class DetailsActivity : AppCompatActivity() {
                     container.addView(listItem)
                 }
                 descriptionTV.text = details[id].description
+
+                //back button
                 backButton.setOnClickListener{
                     finish()
                 }
+
+                //go to map
                 mapButton.setOnClickListener{
                     val latitude = details[id].address.mapCoordinates.lat
                     val longitude = details[id].address.mapCoordinates.lng

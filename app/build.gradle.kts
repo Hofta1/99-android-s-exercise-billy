@@ -52,6 +52,14 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+}
+
+tasks {
+    // Apply doNotTrackState() to the test tasks
+    withType<Test> {
+        doNotTrackState("Task doesn't require tracking")
+    }
 }
 
 dependencies {
@@ -71,12 +79,17 @@ dependencies {
 
     // Testing Libraries
     testImplementation(libs.junit)
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation (libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 
     // ViewModel Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -85,7 +98,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-    // Optional, depending on your usage
 //    implementation(libs.androidx.hilt.lifecycle.viewmodel)
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)

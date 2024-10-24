@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Details(
     val address: AddressDt,
     val description: String,
-    val attributes: Attributes,
+    @SerializedName("attributes") val attributesDt: AttributesDt,
     val id: Int,
     val photo: String,
     @SerializedName("project_name") val projectName: String,

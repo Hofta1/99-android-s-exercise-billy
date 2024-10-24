@@ -26,7 +26,6 @@ class MyViewModel @Inject constructor(private val repository: DataRepository) : 
                 _listings.value = repository.fetchListing()
                 _details.value = repository.fetchDetails()
             } catch (e: Exception) {
-                Log.e("MyViewModel", "Error fetching data: ${e.message}")
                 _listings.value = emptyList()
                 _details.value = emptyList()
             }
