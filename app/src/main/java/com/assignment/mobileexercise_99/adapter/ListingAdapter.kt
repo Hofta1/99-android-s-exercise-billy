@@ -9,24 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.assignment.mobileexercise_99.R
 import com.assignment.mobileexercise_99.data.model.listing.Listing
+import com.assignment.mobileexercise_99.databinding.ItemListingBinding
 import java.util.Locale
 
 class ListingAdapter (
     private val listingDetail: List<Listing>,
     private val onItemClick: (Listing) -> Unit) : RecyclerView.Adapter<ListingAdapter.DetailViewHolder>() {
 
-    class DetailViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val photo: ImageView = view.findViewById(R.id.photoIV)
-        val projectNameTV: TextView = view.findViewById(R.id.projectNameTV)
-        val addressTV: TextView = view.findViewById(R.id.AddressTV)
-        val descriptionTV: TextView = view.findViewById(R.id.descriptionTV)
-        val roomSizeTV: TextView = view.findViewById(R.id.roomSizeTV)
-        val priceTV: TextView = view.findViewById(R.id.priceTV)
+    class DetailViewHolder(private val binding: ItemListingBinding) : RecyclerView.ViewHolder(binding.root) {
+        val photo: ImageView = binding.photoIV
+        val projectNameTV: TextView = binding.projectNameTV
+        val addressTV: TextView = binding.AddressTV
+        val descriptionTV: TextView = binding.descriptionTV
+        val roomSizeTV: TextView = binding.roomSizeTV
+        val priceTV: TextView = binding.priceTV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_listing, parent, false)
-        return DetailViewHolder(view)
+        val binding = ItemListingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DetailViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {

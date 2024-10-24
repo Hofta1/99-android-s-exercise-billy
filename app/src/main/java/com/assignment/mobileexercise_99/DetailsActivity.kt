@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.assignment.mobileexercise_99.databinding.ActivityDetailsBinding
+import com.assignment.mobileexercise_99.databinding.DetailListingBinding
 import com.bumptech.glide.Glide
 import com.assignment.mobileexercise_99.presentation.MyViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,23 +20,25 @@ import java.util.Locale
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private val viewModel: MyViewModel by viewModels()
+    private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_details)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val container : LinearLayout = findViewById(R.id.detailContainer)
+        val container : LinearLayout = binding.detailContainer
         //initialize component
-        val backButton: Button = findViewById(R.id.backButton)
-        val photoIV: ImageView = findViewById(R.id.projectImageView)
-        val priceTV: TextView = findViewById(R.id.priceTV)
-        val projectNameTV: TextView = findViewById(R.id.projectNameTV)
-        val titleTV: TextView = findViewById(R.id.titleTV)
-         val subtitleTV: TextView = findViewById(R.id.subtitleTV)
-         val mapButton: Button = findViewById(R.id.mapButton)
-         val bedTV: TextView = findViewById(R.id.bedTextView)
-         val bathTV: TextView = findViewById(R.id.bathTextView)
-         val descriptionTV: TextView = findViewById(R.id.descriptionTextView)
+        val backButton: Button = binding.backButton
+        val photoIV: ImageView = binding.projectImageView
+        val priceTV: TextView = binding.priceTV
+        val projectNameTV: TextView = binding.projectNameTV
+        val titleTV: TextView = binding.titleTV
+         val subtitleTV: TextView = binding.subtitleTV
+         val mapButton: Button = binding.mapButton
+         val bedTV: TextView = binding.bedTextView
+         val bathTV: TextView = binding.bathTextView
+         val descriptionTV: TextView = binding.descriptionTextView
 
         val id = intent.getIntExtra("id", 1)
         viewModel.getData()
@@ -51,14 +55,13 @@ class DetailsActivity : AppCompatActivity() {
                 bedTV.text = details[id].attributesDt.bedrooms.toString()
                 bathTV.text = details[id].attributesDt.bathrooms.toString()
                 for (item in details[id].propertyDetails){
-                    val listItem = LayoutInflater.from(this).inflate(
-                        R.layout.detail_listing,container,false
+                    val listItemBinding = DetailListingBinding.inflate(
+                        LayoutInflater.from(this),container,false
                     )
-                   val labelTV: TextView =  listItem.findViewById(R.id.detailLabel)
-                    val valueTV: TextView = listItem.findViewById(R.id.detailValue)
-                    labelTV.text = item.label
-                    valueTV.text = item.text
-                    container.addView(listItem)
+
+                    listItemBinding.detailLabel.text = item.label
+                    listItemBinding.detailValue.text = item.text
+                    container.addView(listItemBinding.root)
                 }
                 descriptionTV.text = details[id].description
 

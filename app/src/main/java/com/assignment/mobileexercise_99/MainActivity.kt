@@ -10,22 +10,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.assignment.mobileexercise_99.data.model.listing.Listing
 import com.assignment.mobileexercise_99.presentation.MyViewModel
 import com.assignment.mobileexercise_99.adapter.ListingAdapter
+import com.assignment.mobileexercise_99.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class MainActivity : AppCompatActivity() {
     private val viewModel: MyViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
     private lateinit var listingAdapter: ListingAdapter
-
+    private lateinit var binding:  ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
 
-        recyclerView = findViewById(R.id.listingRecyclerView)
+        recyclerView = binding.listingRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         viewModel.getData()
         // Use the injected dependency

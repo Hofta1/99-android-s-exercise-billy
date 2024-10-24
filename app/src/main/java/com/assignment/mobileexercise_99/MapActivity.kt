@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.assignment.mobileexercise_99.databinding.ActivityMapBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -23,23 +24,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var myMap : GoogleMap
     private var lat by Delegates.notNull<Double>()
     private var lng by Delegates.notNull<Double>()
-
-    lateinit var mapFragment: SupportMapFragment
+    private lateinit var binding: ActivityMapBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_map)
+        binding = ActivityMapBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         var latitude = intent.getDoubleExtra("latitude",1.3884286902614)
         var longitude = intent.getDoubleExtra("longitude",103.87432292478)
-        val backButton: Button = findViewById(R.id.backButtonMap)
-        val gMapsButton : Button = findViewById(R.id.gMapButton)
+        val backButton = binding.backButtonMap
+        val gMapsButton = binding.gMapButton
         lat = latitude
         lng = longitude
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        initializeMap()
 
         backButton.setOnClickListener{
             finish()
@@ -57,6 +57,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private fun initializeMap(){
+        val mapFragment = SupportMapFragment.newInstance()
+        supportFragmentManager.beginTransaction().replace(binding.map.id, mapFragment).commit()
+        mapFragment.getMapAsync(this)
+    }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -64,9 +69,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == 1){
-            if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     myMap.isMyLocationEnabled = true
+                    initializeMap()
                 }
             }
             else{
